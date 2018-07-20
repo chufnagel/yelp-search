@@ -1,4 +1,11 @@
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/CoolStuffIncorporated/yelp-search.png?columns=all)](https://waffle.io/CoolStuffIncorporated/yelp-search?utm_source=badge)
+![David](https://img.shields.io/david/chufnagel/yinder.svg)
+![David](https://img.shields.io/david/dev/chufnagel/yinder.svg)
+![Known Vulnerabilities](https://snyk.io/test/github/chufnagel/yinder/badge.svg?targetFile=package.json)
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/df3342ccd974457d934027824eea3dcb)](https://www.codacy.com/app/chufnagel/yinder?utm_source=gitlab.com&amp;utm_medium=referral&amp;utm_content=chufnagel/yinder&amp;utm_campaign=Badge_Grade)
+
+
 # Yelp Tinder
 
 ## Specs

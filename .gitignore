@@ -21,7 +21,6 @@ lib-cov
 *.out
 *.pid
 *.gz
-package-lock.json
 
 pids
 logs
@@ -74,3 +73,6 @@ yelp-node-examples/
 # HTTPS
 server/env/server.cert
 server/env/server.key
+
+# Webpack
+client/dist/bundle.js
