@@ -1,5 +1,5 @@
 {
-  "name": "yelp-search",
+  "name": "yinder",
   "version": "1.0.0",
   "description": "Tinder for food",
   "main": "index.js",
@@ -14,10 +14,17 @@
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "standard": "standard index.js",
-    "test": "ava spec/mongo-ava-spec.js",
+    "test": "jest",
+    "test:db": "ava spec/mongo-ava-spec.js",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "deploy": "gcloud app deploy"
   },
-  "author": "CoolStuffIncorporated",
+  "jest": {
+    "setupFiles": ["./client/src/test/jestsetup.js"],
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
+  },
+  "author": "Charles Hufnagel",
   "license": "ISC",
   "devDependencies": {
     "ava": "^0.16.0",
@@ -29,6 +36,9 @@
     "co-exec": "^1.0",
     "codecov": "^1.0.1",
     "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-ava": "^4.5.1",
@@ -37,9 +47,11 @@
     "eslint-plugin-react": "^7.8.2",
     "file-loader": "^1.1.11",
     "ghooks": "^1.2.4",
+    "jest": "^23.4.1",
     "node-sass": "^4.9.0",
     "nodemon": "^1.17.5",
     "nyc": "^10.3.2",
+    "react-test-renderer": "^16.4.1",
     "sass-loader": "^7.0.3",
     "sinon": "^5.1.0",
     "standard": "^8.4.0",
@@ -69,13 +81,13 @@
     "yelp-fusion": "^2.0.3"
   },
   "bugs": {
-    "url": "https://github.com/CoolStuffIncorporated/yelp-search/issues"
+    "url": "https://github.com/chufnagel/yinder/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/CoolStuffIncorporated/yelp-search.git"
+    "url": "https://github.com/chufnagel/yinder.git"
   },
-  "homepage": "https://github.com/CoolStuffIncorporated/yelp-search",
+  "homepage": "https://github.com/chufnagel/yinder",
   "config": {
     "ghooks": {
       "pre-commit": "npm run standard"
@@ -88,6 +100,6 @@
     "express"
   ],
   "engines": {
-    "node": "6.0.0"
+    "node": "10.5.0"
   }
 }
