@@ -4,7 +4,7 @@ const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
 
 module.exports = {
-  entry: `${SRC_DIR}/App.jsx`,
+  entry: `${SRC_DIR}/index.jsx`,
   mode: 'production',
   output: {
     filename: 'bundle.js',
@@ -21,9 +21,6 @@ module.exports = {
         include: SRC_DIR,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        query: {
-          presets: ['react', 'env'],
-        },
       },
       {
         test: /\.s?css$/,
@@ -31,7 +28,7 @@ module.exports = {
           'css-loader',
           'sass-loader',
           'style-loader',
-        ]
+        ],
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,

@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
-import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-import Search from './Components/Search.jsx';
-import Display from './Components/Display.jsx';
-import Favorites from './Components/Favorites.jsx';
-import { business, data } from './dummydata';
+import Search from './Search.jsx';
+import Display from './Display.jsx';
+import Favorites from './Favorites.jsx';
+import { business, data } from '../dummydata';
 // import './AppTransitions.scss';
 
 const businessIds = data.businesses.map(business => business.id); // dummy data for now
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -92,44 +91,7 @@ class App extends Component {
       </div>
       </CSSTransition>
     </TransitionGroup>
-    )
+    );
   }
 }
 
-ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* IGNORE THIS WORK ON CONTEXT API */
-// const MyContext = React.createContext();
-
-// class MyProvider extends Component {
-//   state = {
-//     favorites: [dummyBiz],
-//     restaurants: [dummyBiz],
-//     currentRestaurant: dummyBiz,
-//     restaurantID: "x7hsZRd_MyrUgAW91FM9qA"
-//   }
-//   render() {
-//     return (
-//       <MyContext.Provider value={{state: this.state}}>
-//       {this.props.children}
-//       </MyContext.Provider>
-//     )
-//   }
-// }
-
-// ReactDOM.render(<MyProvider><App /></MyProvider>, document.getElementById('root'));
-
-///////////////////////////////////////////////////////////////////////\

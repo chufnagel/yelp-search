@@ -4,11 +4,12 @@
   "description": "Tinder for food",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "start:dev": "webpack -d --watch & node server/index.js & node-sass --include-path scss ./client/src/main.scss",
-    "webpack": "./node_modules/webpack/bin/webpack.js",
-    "server-dev": "nodemon server/index.js",
-    "react-dev": "webpack -d --watch",
+    "start": "npm run build && node server/index.js",
+    "build": "webpack",
+    "build-watch": "webpack -w -d",
+    "start-watch": "nodemon server/index.js",
+    "dev": "concurrently --kill-others \"npm run start-watch\" \"npm run build-watch\"",
+    "lint": "eslint src",
     "sass-dev": "node-sass -w ./client/src/main.scss -o ./client/dist/",
     "build-css": "node-sass --include-path scss ./client/src/main.scss ./client/dist/main.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
@@ -20,10 +21,6 @@
     "test:coverage": "jest --coverage",
     "deploy": "gcloud app deploy"
   },
-  "jest": {
-    "setupFiles": ["./client/src/test/jestsetup.js"],
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
-  },
   "author": "Charles Hufnagel",
   "license": "ISC",
   "devDependencies": {
@@ -31,14 +28,14 @@
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",
+    "babel-plugin-transform-react-constant-elements": "^6.23.0",
+    "babel-plugin-transform-react-inline-elements": "^6.22.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "co-exec": "^1.0",
     "codecov": "^1.0.1",
+    "concurrently": "^3.6.0",
     "css-loader": "^0.28.11",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "enzyme-to-json": "^3.3.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-ava": "^4.5.1",
@@ -61,9 +58,13 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-jest": "^23.4.0",
     "body-parser": "^1.18.3",
     "chalk": "^2.4.1",
     "compression": "^1.7.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
     "express": "^4.16.3",
     "materialize-css": "^0.100.2",
     "mongodb-memory-server": "^1.8.0",
@@ -88,18 +89,22 @@
     "url": "https://github.com/chufnagel/yinder.git"
   },
   "homepage": "https://github.com/chufnagel/yinder",
-  "config": {
-    "ghooks": {
-      "pre-commit": "npm run standard"
-    }
-  },
   "keywords": [
     "yelp-fusion",
     "yelp",
     "mongo",
-    "express"
+    "express",
+    "react"
   ],
   "engines": {
-    "node": "10.5.0"
+    "node": "10.5.0",
+    "npm": "6.1.0"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run standard",
+      "post-merge": "npm install",
+      "post-rewrite": "npm install"
+    }
   }
 }
